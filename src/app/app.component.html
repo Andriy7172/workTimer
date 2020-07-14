@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">Work Timer</mat-toolbar>
+<p>{{ seconds }}</p>
+<button (click)="startTimer()"
+        [disabled]="startDisabled">
+  Start
+</button>
+<button (click)="pauseTimer()"
+        [disabled]="pauseDisabled">
+  Pause
+</button>
