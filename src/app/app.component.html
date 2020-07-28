@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">Work Timer</mat-toolbar>
-<p>{{ seconds }}</p>
+<h2>Work day duration: {{ workDayDurationInHours }}h</h2>
+<p>{{ seconds | secondsToHour }}</p>
 <button (click)="startTimer()"
         [disabled]="startDisabled">
   Start
@@ -7,4 +8,8 @@
 <button (click)="pauseTimer()"
         [disabled]="pauseDisabled">
   Pause
+</button>
+<button (click)="refreshTimer()"
+        [disabled]="startDisabled">
+  Refresh
 </button>
