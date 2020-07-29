@@ -1,15 +1,29 @@
 <mat-toolbar color="primary">Work Timer</mat-toolbar>
-<h2>Work day duration: {{ workDayDurationInHours }}h</h2>
-<p>{{ seconds | secondsToHour }}</p>
-<button (click)="startTimer()"
-        [disabled]="startDisabled">
-  Start
-</button>
-<button (click)="pauseTimer()"
-        [disabled]="pauseDisabled">
-  Pause
-</button>
-<button (click)="refreshTimer()"
-        [disabled]="startDisabled">
-  Refresh
-</button>
+<mat-card style="margin: 8px;">
+  <mat-card-header>Working day duration: 8h</mat-card-header>
+
+  <mat-card-content>
+    <div class="clock"><p>{{ seconds * 1000 - 10800000 | date: 'H:mm:ss' }}</p></div>
+  </mat-card-content>
+  
+  <mat-card-actions fxLayoutAlign="space-around">
+    <button (click)="startTimer()"
+            [disabled]="startDisabled"
+            mat-flat-button
+            color="primary">
+      Start
+    </button>
+    <button (click)="pauseTimer()"
+            [disabled]="pauseDisabled"
+            mat-flat-button
+            color="accent">
+      Pause
+    </button>
+    <button (click)="refreshTimer()"
+            [disabled]="startDisabled"
+            mat-flat-button
+            color="warn">
+      Refresh
+    </button>
+  </mat-card-actions>
+</mat-card>
