@@ -27,3 +27,44 @@
     </button>
   </mat-card-actions>
 </mat-card>
+
+<mat-card style="margin: 8px;"
+          *ngIf="addNewTask">
+  <form [formGroup]="taskGroup">
+    <mat-form-field>
+      <input matInput type="text" formControlName="title" placeholder="Title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" formControlName="description" placeholder="Description">
+    </mat-form-field>
+  </form>
+  <mat-card-actions fxLayoutAlign="end">
+    <button mat-flat-button
+            color="primary"
+            (click)="submit()">
+      Submit
+    </button>
+    <button mat-flat-button
+            color="accent">
+      Cancel
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card style="margin: 8px;">
+  <mat-card-header>
+    <mat-card-title>Finished Tasks</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks">
+        <p mat-line>{{ task.title }}</p>
+        <p mat-line>{{ task.description }}</p>
+        <p mat-line>Start: {{ task.startTime | date: 'H:mm:ss' }}</p>
+        <p mat-line>Duration: {{ task.duration | date: 'H:mm:ss' }}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
