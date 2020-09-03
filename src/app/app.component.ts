@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Task } from './models/task.model';
 import { FormGroup, FormControl } from '@angular/forms';
+import { FirestoreService } from './services/firestore.service';
 
 @Component({
   selector: 'app-root',
@@ -17,19 +18,21 @@ export class AppComponent implements OnInit {
   pauseDisabled = true;
   workDayDurationInHours = 8;
   taskStartTime: number;
-  tasks: Task[] = [
-    new Task('task one', 'description 1', new Date().getTime(), 10000),
-    new Task('task two', 'description 2', new Date().getTime(), 10000),
-    new Task('task three', 'description 3', new Date().getTime(), 10000),
-  ];
+  tasks: Task[] = [];
+
+  // TODO: add validation
   taskGroup = new FormGroup({
+    taskNumber: new FormControl(null),
     title: new FormControl(null),
     description: new FormControl(null),
     startTime: new FormControl(null),
     duration: new FormControl(null),
   });
 
+  constructor(private fireService: FirestoreService) {}
+
   ngOnInit(): void {
+    this.fireService.tasks.READ().subscribe(data => this.tasks = data as Task[]);
     Notification.requestPermission();
   }
 
@@ -59,20 +62,17 @@ export class AppComponent implements OnInit {
   }
 
   submit(): void {
-    // TODO Polish form add cancel, add validation
     const currentTime = new Date().getTime();
     const duration = currentTime - this.taskStartTime;
     this.taskGroup.patchValue({startTime: this.taskStartTime, duration});
-    console.log(this.taskGroup.value);
-    this.tasks = [
-      ...this.tasks,
-      new Task(
-        this.taskGroup.value.title,
-        this.taskGroup.value.description,
-        this.taskGroup.value.startTime,
-        this.taskGroup.value.duration
-      ),
-    ];
+    const task = new Task(
+      this.taskGroup.value.taskNumber,
+      this.taskGroup.value.title,
+      this.taskGroup.value.description,
+      this.taskGroup.value.startTime,
+      this.taskGroup.value.duration
+    );
+    this.fireService.tasks.CREATE(task).then(value => console.log(value));
     this.taskGroup.reset();
     this.addNewTask = false;
   }

@@ -32,6 +32,9 @@
           *ngIf="addNewTask">
   <form [formGroup]="taskGroup">
     <mat-form-field>
+      <input matInput type="number" formControlName="taskNumber" placeholder="#">
+    </mat-form-field>
+    <mat-form-field>
       <input matInput type="text" formControlName="title" placeholder="Title">
     </mat-form-field>
     <mat-form-field>
