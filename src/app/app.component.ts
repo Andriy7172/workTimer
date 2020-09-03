@@ -10,6 +10,7 @@ import { FirestoreService } from './services/firestore.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  title = '';
   addNewTask = false;
   seconds = 0;
   hours = '';
