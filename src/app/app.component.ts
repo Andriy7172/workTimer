@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
 
   // TODO: add validation
   taskGroup = new FormGroup({
-    taskNumber: new FormControl(null),
     title: new FormControl(null),
     description: new FormControl(null),
     startTime: new FormControl(null),
@@ -67,7 +66,6 @@ export class AppComponent implements OnInit {
     const duration = currentTime - this.taskStartTime;
     this.taskGroup.patchValue({startTime: this.taskStartTime, duration});
     const task = new Task(
-      this.taskGroup.value.taskNumber,
       this.taskGroup.value.title,
       this.taskGroup.value.description,
       this.taskGroup.value.startTime,
@@ -76,5 +74,9 @@ export class AppComponent implements OnInit {
     this.fireService.tasks.CREATE(task).then(value => console.log(value));
     this.taskGroup.reset();
     this.addNewTask = false;
+  }
+
+  deleteTask(startTime: number): void {
+    this.fireService.tasks.DELETE(startTime).then(data => console.log(data));
   }
 }

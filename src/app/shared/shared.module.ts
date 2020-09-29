@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDividerModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatIconModule,
   ],
   exports: [
     MatCardModule,
@@ -28,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDividerModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatIconModule,
   ],
 })
 export class SharedModule { }

@@ -8,10 +8,11 @@ import { map } from 'rxjs/operators';
 })
 export class FirestoreService {
   readonly tasks = {
-    CREATE: (task: Task) => this.db.collection('projects/workTimer/tasks').doc(`${task.taskNumber}`).set({...task}),
+    CREATE: (task: Task) => this.db.collection('projects/workTimer/tasks').doc(`${task.startTime}`).set({...task}),
     READ: () => this.db.collection('projects/workTimer/tasks').snapshotChanges().pipe(map(value => {
       return value.map(item => item.payload.doc.data());
     })),
+    DELETE: (startTime: number) => this.db.collection('projects/workTimer/tasks').doc(`${startTime}`).delete()
   };
 
   constructor(private db: AngularFirestore) { }
