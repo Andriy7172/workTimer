@@ -76,4 +76,9 @@ export class AppComponent implements OnInit {
     this.taskGroup.reset();
     this.addNewTask = false;
   }
+
+  cancel(): void {
+    this.taskGroup.reset();
+    this.addNewTask = false;
+  }
 }
