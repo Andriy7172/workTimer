@@ -38,16 +38,16 @@
       <input matInput type="text" formControlName="description" placeholder="Description" required>
     </mat-form-field>
   </form>
-  <mat-card-actions fxLayoutAlign="end">
+  <mat-card-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+    <button mat-flat-button
+            color="accent">
+      Cancel
+    </button>
     <button mat-flat-button
             color="primary"
             (click)="submit()"
             [disabled]="taskGroup.invalid">
       Submit
-    </button>
-    <button mat-flat-button
-            color="accent">
-      Cancel
     </button>
   </mat-card-actions>
 </mat-card>
