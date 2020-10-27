@@ -30,14 +30,19 @@
 
 <mat-card style="margin: 8px;"
           *ngIf="addNewTask">
-  <form [formGroup]="taskGroup" fxLayout="column">
-    <mat-form-field>
-      <input matInput type="text" formControlName="title" placeholder="Title" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="text" formControlName="description" placeholder="Description" required>
-    </mat-form-field>
-  </form>
+  <mat-card-header>
+    <mat-card-title>Create Task</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="taskGroup" fxLayout="column">
+      <mat-form-field>
+        <input matInput type="text" formControlName="title" placeholder="Title" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" formControlName="description" placeholder="Description" required>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
   <mat-card-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
     <button mat-flat-button
             color="accent">
