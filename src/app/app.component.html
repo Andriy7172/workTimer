@@ -30,7 +30,7 @@
 
 <mat-card style="margin: 8px;"
           *ngIf="addNewTask">
-  <form [formGroup]="taskGroup">
+  <form [formGroup]="taskGroup" fxLayout="column">
     <mat-form-field>
       <input matInput type="text" formControlName="title" placeholder="Title" required>
     </mat-form-field>
