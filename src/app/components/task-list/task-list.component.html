@@ -1,0 +1,18 @@
+<mat-card style="margin: 8px;">
+  <mat-card-header>
+    <mat-card-title>Finished Tasks</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks">
+        <p mat-line>{{ task.title }}</p>
+        <p mat-line>{{ task.description }}</p>
+        <p mat-line>Start: {{ task.startTime | date: 'H:mm:ss' }}</p>
+        <p mat-line>Duration: {{ task.duration | date: 'H:mm:ss' }}</p>
+        <button mat-icon-button (click)="deleteTask(task.startTime)"><mat-icon>delete</mat-icon></button>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

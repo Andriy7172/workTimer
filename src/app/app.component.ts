@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   pauseDisabled = true;
   workDayDurationInHours = 8;
   taskStartTime: number;
-  tasks: Task[] = [];
 
   taskGroup = new FormGroup({
     title: new FormControl(null, {
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit {
   constructor(private fireService: FirestoreService) {}
 
   ngOnInit(): void {
-    this.fireService.tasks.READ().subscribe(data => this.tasks = data as Task[]);
     Notification.requestPermission();
   }
 
@@ -77,9 +75,5 @@ export class AppComponent implements OnInit {
     this.fireService.tasks.CREATE(task).then(value => console.log(value));
     this.taskGroup.reset();
     this.addNewTask = false;
-  }
-
-  deleteTask(startTime: number): void {
-    this.fireService.tasks.DELETE(startTime).then(data => console.log(data));
   }
 }
