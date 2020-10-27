@@ -32,16 +32,17 @@
           *ngIf="addNewTask">
   <form [formGroup]="taskGroup">
     <mat-form-field>
-      <input matInput type="text" formControlName="title" placeholder="Title">
+      <input matInput type="text" formControlName="title" placeholder="Title" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" formControlName="description" placeholder="Description">
+      <input matInput type="text" formControlName="description" placeholder="Description" required>
     </mat-form-field>
   </form>
   <mat-card-actions fxLayoutAlign="end">
     <button mat-flat-button
             color="primary"
-            (click)="submit()">
+            (click)="submit()"
+            [disabled]="taskGroup.invalid">
       Submit
     </button>
     <button mat-flat-button

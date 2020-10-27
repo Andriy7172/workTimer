@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Task } from './models/task.model';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirestoreService } from './services/firestore.service';
 
 @Component({
@@ -21,10 +21,13 @@ export class AppComponent implements OnInit {
   taskStartTime: number;
   tasks: Task[] = [];
 
-  // TODO: add validation
   taskGroup = new FormGroup({
-    title: new FormControl(null),
-    description: new FormControl(null),
+    title: new FormControl(null, {
+      validators: [Validators.required],
+    }),
+    description: new FormControl(null, {
+      validators: [Validators.required],
+    }),
     startTime: new FormControl(null),
     duration: new FormControl(null),
   });
