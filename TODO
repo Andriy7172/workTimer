@@ -1,6 +1,7 @@
 
 Todo:
   ☐ Create workday duration editor
+    ✔ Create mockup for editor @done(20-10-28 20:51)
     ☐ Connect to firestore
     ☐ Add validation
   ☐ Display time when you started working day, and run timer.
