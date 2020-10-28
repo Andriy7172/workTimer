@@ -5,3 +5,4 @@ Todo:
   ☐ Move Timer to separete componet
   ☐ Disable timer buttons whyle creating new task
   ☐ Whyle creating new task timer don't pause timer (timer should count work day duration)
+  ☐ Add Auth to app
