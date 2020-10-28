@@ -3,9 +3,9 @@ Todo:
   ☐ Create workday duration editor
     ☐ Connect to firestore
     ☐ Add validation
-  ☐ Display time when you started working day
-  ☐ Add rest time (e.g. lunch)
-  ☐ Calculate and display time when your working day should end based on working day duration
+  ☐ Display time when you started working day, and run timer.
+  ☐ Calculate and display aproximate time when your working day should end based on working day duration
+    ☐ User can press pause button to take a rest, and after he continue the working day end time should be recalculated
   ☐ Move Task Form to separete component
   ☐ Move Timer to separete componet
   ☐ Disable timer buttons whyle creating new task
