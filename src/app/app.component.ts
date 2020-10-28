@@ -3,6 +3,8 @@ import { interval, Subscription } from 'rxjs';
 import { Task } from './models/task.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirestoreService } from './services/firestore.service';
+import { MatDialog } from '@angular/material/dialog';
+import { WorkingDayDurationEditorComponent } from './components/working-day-duration-editor/working-day-duration-editor.component';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +33,10 @@ export class AppComponent implements OnInit {
     duration: new FormControl(null),
   });
 
-  constructor(private fireService: FirestoreService) {}
+  constructor(
+    private fireService: FirestoreService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     Notification.requestPermission();
@@ -80,5 +85,9 @@ export class AppComponent implements OnInit {
   cancel(): void {
     this.taskGroup.reset();
     this.addNewTask = false;
+  }
+
+  openWorkingDayDurationEditor(): void {
+    const dialogRef = this.dialog.open(WorkingDayDurationEditorComponent);
   }
 }

@@ -1,6 +1,15 @@
 <mat-toolbar color="primary">Work Timer</mat-toolbar>
 <mat-card style="margin: 8px;">
-  <mat-card-header>Working day duration: 8h</mat-card-header>
+  <mat-card-header fxLayoutAlign="center center">
+    <mat-card-title style="margin-bottom: 0;">
+      <span>Working day duration: 8h</span>
+    </mat-card-title>
+    <span fxFlex></span>
+    <button mat-icon-button
+            (click)="openWorkingDayDurationEditor()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-header>
 
   <mat-card-content>
     <div class="clock"><p>{{ seconds * 1000 - 10800000 | date: 'H:mm:ss' }}</p></div>

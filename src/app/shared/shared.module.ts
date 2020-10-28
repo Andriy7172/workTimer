@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatFormFieldModule,
     MatIconModule,
+    MatDialogModule,
   ],
   exports: [
     MatCardModule,
@@ -31,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatFormFieldModule,
     MatIconModule,
+    MatDialogModule,
   ],
 })
 export class SharedModule { }

@@ -9,11 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { WorkingDayDurationEditorComponent } from './components/working-day-duration-editor/working-day-duration-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
+    WorkingDayDurationEditorComponent,
   ],
   imports: [
     BrowserModule,
