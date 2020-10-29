@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   timerSubscription: Subscription;
   startDisabled = false;
   pauseDisabled = true;
-  workDayDurationInHours = 8;
+  workDayDuration: string;
   taskStartTime: number;
 
   taskGroup = new FormGroup({
@@ -40,6 +40,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     Notification.requestPermission();
+    this.fireService.workingDayDuration.READ().subscribe(timeInSeconds => {
+      this.workDayDuration = this.secondsToHourMinutes(timeInSeconds);
+    });
   }
 
   startTimer(): void {
@@ -89,5 +92,12 @@ export class AppComponent implements OnInit {
 
   openWorkingDayDurationEditor(): void {
     const dialogRef = this.dialog.open(WorkingDayDurationEditorComponent);
+  }
+
+  secondsToHourMinutes(timeInSeconds: number): string {
+    const time = new Date(timeInSeconds * 1000);
+    const hours = time.getUTCHours();
+    const minutes = time.getUTCMinutes();
+    return `${hours}h:${minutes}m`;
   }
 }

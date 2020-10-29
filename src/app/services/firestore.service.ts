@@ -15,5 +15,14 @@ export class FirestoreService {
     DELETE: (startTime: number) => this.db.collection('projects/workTimer/tasks').doc(`${startTime}`).delete()
   };
 
+  readonly workingDayDuration = {
+    UPDATE: (timeInSeconds: number) => this.db.doc('projects/workTimer').update({ timeInSeconds }),
+    READ: () => this.db.doc<{name: string, timeInSeconds: number}>('projects/workTimer').snapshotChanges()
+      .pipe(
+        map(value => value.payload.data()),
+        map(projectInfo => projectInfo.timeInSeconds),
+      ),
+  };
+
   constructor(private db: AngularFirestore) { }
 }
