@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Task } from './models/task.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,16 +11,18 @@ import { WorkingDayDurationEditorComponent } from './components/working-day-dura
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = '';
   addNewTask = false;
-  seconds = 0;
+  initialTimeMilliseconds = 0;
+  milliseconds = 0;
   hours = '';
   timerSubscription: Subscription;
   startDisabled = false;
   pauseDisabled = true;
   workDayDuration: string;
   taskStartTime: number;
+  timeZoneOffsetInSeconds = new Date().getTimezoneOffset() * 60;
 
   taskGroup = new FormGroup({
     title: new FormControl(null, {
@@ -33,6 +35,8 @@ export class AppComponent implements OnInit {
     duration: new FormControl(null),
   });
 
+  subscription: Subscription;
+
   constructor(
     private fireService: FirestoreService,
     private dialog: MatDialog,
@@ -40,9 +44,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     Notification.requestPermission();
-    this.fireService.workingDayDuration.READ().subscribe(timeInSeconds => {
+    this.subscription = this.fireService.workingDayDuration.READ().subscribe(timeInSeconds => {
       this.workDayDuration = this.secondsToHourMinutes(timeInSeconds);
+      this.milliseconds = timeInSeconds * 1000;
+      this.initialTimeMilliseconds = timeInSeconds * 1000;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.timerSubscription.unsubscribe();
   }
 
   startTimer(): void {
@@ -50,11 +61,13 @@ export class AppComponent implements OnInit {
     this.startDisabled = !this.startDisabled;
     this.pauseDisabled = !this.pauseDisabled;
     this.timerSubscription = interval(1000).subscribe(() => {
-      this.seconds += 1;
-      const hours = this.seconds % 360;
-      const minutes = this.seconds % 60;
-      if (this.seconds === 10) {
+      this.milliseconds -= 1000;
+      if (this.milliseconds === 0) {
         const not = new Notification('End of the work day');
+        this.timerSubscription.unsubscribe();
+        this.milliseconds = this.initialTimeMilliseconds;
+        this.startDisabled = false;
+        this.pauseDisabled = true;
       }
     });
   }
@@ -67,7 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   refreshTimer(): void {
-    this.seconds = 0;
+    this.milliseconds = this.initialTimeMilliseconds;
   }
 
   submit(): void {

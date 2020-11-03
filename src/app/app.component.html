@@ -12,7 +12,7 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div class="clock"><p>{{ seconds * 1000 - 10800000 | date: 'H:mm:ss' }}</p></div>
+    <div class="clock"><p>{{ milliseconds | date: 'H:mm:ss' : '+0000' }}</p></div>
   </mat-card-content>
   
   <mat-card-actions fxLayoutAlign="space-around">
