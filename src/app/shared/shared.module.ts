@@ -9,6 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatIconModule,
     MatDialogModule,
+    MatBottomSheetModule,
   ],
   exports: [
     MatCardModule,
@@ -34,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatIconModule,
     MatDialogModule,
+    MatBottomSheetModule,
   ],
 })
 export class SharedModule { }

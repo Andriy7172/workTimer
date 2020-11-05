@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Task } from './models/task.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirestoreService } from './services/firestore.service';
 import { MatDialog } from '@angular/material/dialog';
 import { WorkingDayDurationEditorComponent } from './components/working-day-duration-editor/working-day-duration-editor.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @Component({
   selector: 'app-root',
@@ -21,25 +22,14 @@ export class AppComponent implements OnInit, OnDestroy {
   startDisabled = false;
   pauseDisabled = true;
   workDayDuration: string;
-  taskStartTime: number;
   timeZoneOffsetInSeconds = new Date().getTimezoneOffset() * 60;
-
-  taskGroup = new FormGroup({
-    title: new FormControl(null, {
-      validators: [Validators.required],
-    }),
-    description: new FormControl(null, {
-      validators: [Validators.required],
-    }),
-    startTime: new FormControl(null),
-    duration: new FormControl(null),
-  });
 
   subscription: Subscription;
 
   constructor(
     private fireService: FirestoreService,
     private dialog: MatDialog,
+    private bottomSheet: MatBottomSheet,
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   startTimer(): void {
-    this.taskStartTime = new Date().getTime();
     this.startDisabled = !this.startDisabled;
     this.pauseDisabled = !this.pauseDisabled;
     this.timerSubscription = interval(1000).subscribe(() => {
@@ -73,7 +62,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   pauseTimer(): void {
-    this.addNewTask = true;
     this.startDisabled = !this.startDisabled;
     this.pauseDisabled = !this.pauseDisabled;
     this.timerSubscription.unsubscribe();
@@ -83,24 +71,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.milliseconds = this.initialTimeMilliseconds;
   }
 
-  submit(): void {
-    const currentTime = new Date().getTime();
-    const duration = currentTime - this.taskStartTime;
-    this.taskGroup.patchValue({startTime: this.taskStartTime, duration});
-    const task = new Task(
-      this.taskGroup.value.title,
-      this.taskGroup.value.description,
-      this.taskGroup.value.startTime,
-      this.taskGroup.value.duration
-    );
-    this.fireService.tasks.CREATE(task).then(value => console.log(value));
-    this.taskGroup.reset();
-    this.addNewTask = false;
-  }
-
-  cancel(): void {
-    this.taskGroup.reset();
-    this.addNewTask = false;
+  openTaskCreationForm(): void {
+    this.bottomSheet.open(TaskFormComponent);
   }
 
   openWorkingDayDurationEditor(): void {

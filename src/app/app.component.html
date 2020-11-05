@@ -18,53 +18,30 @@
   <mat-card-actions fxLayoutAlign="space-around">
     <button (click)="startTimer()"
             [disabled]="startDisabled"
-            mat-flat-button
+            mat-mini-fab
             color="primary">
-      Start
+      <mat-icon>play_arrow</mat-icon>
     </button>
     <button (click)="pauseTimer()"
             [disabled]="pauseDisabled"
-            mat-flat-button
+            mat-mini-fab
             color="accent">
-      Pause
+      <mat-icon>pause</mat-icon>
     </button>
     <button (click)="refreshTimer()"
             [disabled]="startDisabled"
-            mat-flat-button
+            mat-mini-fab
             color="warn">
-      Refresh
+      <mat-icon>replay</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
 
-<mat-card style="margin: 8px;"
-          *ngIf="addNewTask">
-  <mat-card-header>
-    <mat-card-title>Create Task</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="taskGroup" fxLayout="column">
-      <mat-form-field>
-        <input matInput type="text" formControlName="title" placeholder="Title" required>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="text" formControlName="description" placeholder="Description" required>
-      </mat-form-field>
-    </form>
-  </mat-card-content>
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
-    <button mat-flat-button
-            color="accent"
-            (click)="cancel()">
-      Cancel
-    </button>
-    <button mat-flat-button
-            color="primary"
-            (click)="submit()"
-            [disabled]="taskGroup.invalid">
-      Submit
-    </button>
-  </mat-card-actions>
-</mat-card>
+<button mat-fab
+        color="primary"
+        class="add-task-button"
+        (click)="openTaskCreationForm()">
+  <mat-icon>add</mat-icon>
+</button>
 
 <app-task-list></app-task-list>

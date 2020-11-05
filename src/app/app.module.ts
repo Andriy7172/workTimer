@@ -10,12 +10,14 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { WorkingDayDurationEditorComponent } from './components/working-day-duration-editor/working-day-duration-editor.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     WorkingDayDurationEditorComponent,
+    TaskFormComponent,
   ],
   imports: [
     BrowserModule,
