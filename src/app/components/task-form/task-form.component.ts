@@ -31,7 +31,7 @@ export class TaskFormComponent implements OnInit {
 
   submit(): void {
     const startTime = new Date().getTime();
-    const duration = 0;
+    const duration = null;
     this.taskGroup.patchValue({startTime, duration});
     const task = new Task(
       this.taskGroup.value.title,

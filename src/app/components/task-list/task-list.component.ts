@@ -20,4 +20,10 @@ export class TaskListComponent implements OnInit {
     this.fireService.tasks.DELETE(startTime).then(data => console.log(data));
   }
 
+  finishTask(task: Task): void {
+    const endTime = Number(new Date());
+    const duration = endTime - task.startTime;
+    this.fireService.tasks.CREATE({ ...task, duration }).then();
+  }
+
 }

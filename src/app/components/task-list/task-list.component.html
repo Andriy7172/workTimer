@@ -9,7 +9,8 @@
         <p mat-line>{{ task.title }}</p>
         <p mat-line>{{ task.description }}</p>
         <p mat-line>Start: {{ task.startTime | date: 'H:mm:ss' }}</p>
-        <p mat-line>Duration: {{ task.duration | date: 'H:mm:ss' }}</p>
+        <p mat-line *ngIf="task.duration">Duration: {{ task.duration | date: 'H:mm:ss' : '+0000' }}</p>
+        <button *ngIf="!task.duration" mat-icon-button (click)="finishTask(task)"><mat-icon>check_circle</mat-icon></button>
         <button mat-icon-button (click)="deleteTask(task.startTime)"><mat-icon>delete</mat-icon></button>
         <mat-divider></mat-divider>
       </mat-list-item>
