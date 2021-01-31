@@ -4,14 +4,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { interval, Subscription } from 'rxjs';
 import { TaskFormComponent } from '../../components/task-form/task-form.component';
 import { WorkingDayDurationEditorComponent } from '../../components/working-day-duration-editor/working-day-duration-editor.component';
+import { AuthService } from '../../services/auth/auth.service';
 import { FirestoreService } from '../../services/firestore.service';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
-}
-)
+})
 export class MainPageComponent implements OnInit, OnDestroy {
   public workDayDuration: string;
   public milliseconds = 0;
@@ -26,6 +26,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private fireService: FirestoreService,
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.timerSubscription.unsubscribe();
+    // this.timerSubscription.unsubscribe();
   }
 
   openWorkingDayDurationEditor(): void {
@@ -79,5 +80,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
     const hours = time.getUTCHours();
     const minutes = time.getUTCMinutes();
     return `${hours}h:${minutes}m`;
+  }
+
+  async logout(): Promise<void> {
+    await this.auth.logout();
   }
 }

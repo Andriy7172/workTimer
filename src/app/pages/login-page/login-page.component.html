@@ -1,21 +1,23 @@
-<mat-card>
+<mat-card style="margin: 20px">
   <mat-card-header>
     <mat-card-title>Login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="credentialsForm" fxLayout="column">
-      <mat-form-field fxFlex>
+      <mat-form-field fxFlex appearance="outline">
         <input type="email"
                matInput
                placeholder="Email"
                formControlName="email">
+        <mat-icon matPrefix>email</mat-icon>
       </mat-form-field>
       
-      <mat-form-field fxFlex>
+      <mat-form-field fxFlex appearance="outline">
         <input type="password"
                matInput
                placeholder="Password"
                formControlName="password">
+        <mat-icon matPrefix>vpn_key</mat-icon>
       </mat-form-field>
     </form>
   </mat-card-content>
@@ -24,7 +26,7 @@
     <button mat-raised-button>Cancel</button>
     <button mat-raised-button
             color="primary"
-            (click)="login(credentialsForm.value.email, credentialsForm.value.password)">
+            (click)="login()">
       Submit
     </button>
   </mat-card-actions>

@@ -1,4 +1,11 @@
-<mat-toolbar color="primary">Work Timer</mat-toolbar>
+<mat-toolbar color="primary">
+  Work Timer
+  <span fxFlex></span>
+  <button mat-icon-button
+          (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
 <mat-card style="margin: 8px;">
   <mat-card-header fxLayoutAlign="center center">
     <mat-card-title style="margin-bottom: 0;">

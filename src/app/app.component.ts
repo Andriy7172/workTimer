@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { DataService } from './services/data/data.service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +16,21 @@ export class AppComponent implements OnInit {
 
 
   constructor(
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private data: DataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     Notification.requestPermission();
 
     this.auth.user.subscribe(user => {
-      console.log(user);
+      this.data.userLoggedIn.next(!!user);
+      if (user) {
+        this.router.navigateByUrl('');
+      } else {
+        this.router.navigateByUrl('login');
+      }
     });
   }
 
