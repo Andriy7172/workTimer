@@ -1,10 +1,7 @@
 
 Todo:
   ☐ Create workday duration editor
-    ✔ Create mockup for editor @done(20-10-28 20:51)
-    ✔ Connect to firestore @done(20-10-29 20:57)
     ☐ Add validation
-    ✔ Connect working day duration to timer @done(20-11-03 21:18)
   ☐ Display time when you started working day, and run timer.
   ☐ Calculate and display aproximate time when your working day should end based on working day duration
     ☐ User can press pause button to take a rest, and after he continue the working day end time should be recalculated

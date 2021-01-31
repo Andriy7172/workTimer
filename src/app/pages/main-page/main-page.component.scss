@@ -1,0 +1,17 @@
+.clock {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 4rem;
+  line-height: initial;
+}
+
+.clock > p {
+  margin: 0;
+}
+
+.add-task-button {
+  position: fixed;
+  z-index: 1;
+  bottom: 8px;
+  right: 8px;
+}

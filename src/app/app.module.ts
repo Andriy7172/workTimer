@@ -11,6 +11,8 @@ import { environment } from '../environments/environment';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { WorkingDayDurationEditorComponent } from './components/working-day-duration-editor/working-day-duration-editor.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     TaskListComponent,
     WorkingDayDurationEditorComponent,
     TaskFormComponent,
+    LoginPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
