@@ -1,6 +1,6 @@
 <mat-card style="margin: 20px">
   <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-title>{{config[action].label}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="credentialsForm" fxLayout="column">
@@ -26,8 +26,22 @@
     <button mat-raised-button>Cancel</button>
     <button mat-raised-button
             color="primary"
-            (click)="login()">
+            (click)="submit()">
       Submit
     </button>
   </mat-card-actions>
 </mat-card>
+
+<div *ngIf="action === 'LOGIN'">
+  <h2 style="text-align: center;">New User?</h2>
+  <p style="text-align: center;">
+    <a (click)="action = 'REGISTER'">Register</a>
+  </p>
+</div>
+
+<div *ngIf="action === 'REGISTER'">
+  <h2 style="text-align: center;">Already have account?</h2>
+  <p style="text-align: center;">
+    <a (click)="action = 'LOGIN'">Login</a>
+  </p>
+</div>

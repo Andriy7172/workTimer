@@ -1,13 +1,12 @@
 
 Todo:
-  ☐ Create workday duration editor
-    ☐ Add validation
-  ☐ Display time when you started working day, and run timer.
-  ☐ Calculate and display aproximate time when your working day should end based on working day duration
-    ☐ User can press pause button to take a rest, and after he continue the working day end time should be recalculated
-  ☐ Move Task Form to separete component
-  ☐ Move Timer to separete componet
-  ☐ Disable timer buttons whyle creating new task
-  ☐ Whyle creating new task timer don't pause timer (timer should count work day duration)
-  ☐ Add Auth to app
-  ☐ Add unit tests
+  Multi user support:
+    ☐ Collection of users in firestore
+      ☐ User document {name: string}
+      ☐ For each user separete work time duration settings
+      ☐ Ability to change name
+      ☐ Default user name made from email or ask to enter while registration
+  App faetures:
+    ☐ Set workday duration
+    ☐ write working time in miliseconds per day whith work day duration setted for that day
+    ☐ Display charts or list of days with overtimes or undertimes (some statistics)
