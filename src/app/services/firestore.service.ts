@@ -24,5 +24,13 @@ export class FirestoreService {
       ),
   };
 
+  createUserDocument(uid: string): Promise<void> {
+    return this.db.collection('projects').doc('workTimer').collection('users').doc(uid).set({uid});
+  }
+
+  createUserName(uid: string, userName: string): Promise<void> {
+    return this.db.collection('projects').doc('workTimer').collection('users').doc(uid).update({userName})
+  }
+
   constructor(private db: AngularFirestore) { }
 }

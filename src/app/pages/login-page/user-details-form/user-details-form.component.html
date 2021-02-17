@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input type="text"
+         matInput
+         [placeholder]="'Please enter your user name'"
+         [formControl]="userName">
+</mat-form-field>
+<div>
+  <span fxFlex></span>
+  <button mat-raised-button
+          [disabled]="userName.invalid"
+          (click)="submit()">
+    Submit
+  </button>
+</div>

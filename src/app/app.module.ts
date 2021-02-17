@@ -13,6 +13,7 @@ import { WorkingDayDurationEditorComponent } from './components/working-day-dura
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { UserDetailsFormComponent } from './pages/login-page/user-details-form/user-details-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     WorkingDayDurationEditorComponent,
     TaskFormComponent,
     LoginPageComponent,
-    MainPageComponent
+    MainPageComponent,
+    UserDetailsFormComponent
   ],
   imports: [
     BrowserModule,
