@@ -9,6 +9,6 @@ Todo:
       ☐ Ability to change name
       ☐ Default user name made from email or ask to enter while registration
   App faetures:
-    ☐ Set workday duration
+    ☐ Set workday duration using new counter with ngrx store
     ☐ write working time in miliseconds per day whith work day duration setted for that day
     ☐ Display charts or list of days with overtimes or undertimes (some statistics)
