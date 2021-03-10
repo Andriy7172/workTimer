@@ -1,5 +1,7 @@
 
 Todo:
+  Register:
+    ☐ Add user name as part of registration form
   Multi user support:
     ☐ Collection of users in firestore
       ☐ User document {name: string}
