@@ -14,6 +14,9 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { UserDetailsFormComponent } from './pages/login-page/user-details-form/user-details-form.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './reducers/counter.reducer';
+import { CounterComponent } from './components/counter/counter.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { UserDetailsFormComponent } from './pages/login-page/user-details-form/u
     TaskFormComponent,
     LoginPageComponent,
     MainPageComponent,
-    UserDetailsFormComponent
+    UserDetailsFormComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { UserDetailsFormComponent } from './pages/login-page/user-details-form/u
     ReactiveFormsModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    StoreModule.forRoot({ count: counterReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]
